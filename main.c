@@ -58,3 +58,54 @@ void imprimeNível(ABin a, int l) {
         printf("%d", a->valor);
     }
 }
+
+int min (int x, int y) {
+    if (x < y) return x;
+    else return y;
+}
+
+int procuraE (ABin a, int x) {
+    int r = 1;
+    if (a != NULL) {
+        if (a->valor == x) {
+            r = min(min(0, procuraE(a->esq, x)), procuraE(a->dir, x));
+        }
+        else {
+            r = min(r, min(procuraE(a->esq, x), procuraE(a->esq,x)));
+        }
+    }
+    return r;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
