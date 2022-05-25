@@ -137,6 +137,152 @@ void imprimeAte1 (ABin a, int x){ //Versão Carlos, aparece ordenado. Não perce
     }
 }
 
+//25/05/2022
+
+//1.
+//a)
+int max1 (int x, int y) {
+    if (x>y) return x;
+    return y;
+}
+
+int altura1 (ABin a) {
+    int r = 0;
+    if (a != NULL) {
+        r = 1 + max1(altura1(a->esq), altura1(a->dir));
+    }
+    return r;
+}
+
+//b)
+int nFolhas1 (ABin a) {
+    int r = 0;
+    if (a != NULL) {
+        r = 1 + nFolhas1(a->esq) + nFolhas1(a->dir);
+    }
+    return r;
+}
+
+//c)
+ABin maisEsquerda1 (ABin a) {
+    if (a != NULL) {
+        while (a->esq != NULL) {
+            a = a->esq;
+        }
+        return a;
+    }
+    return NULL;
+}
+
+//d)
+void imprimeNivel1 (ABin a, int l) {
+    int nivel = 0;
+
+    if (nivel == l && a != NULL) {
+        printf("%d ", a->valor);
+    }
+    else if (nivel < l && a != NULL) {
+        imprimeNivel1(a->esq, l-1);
+        imprimeNivel1(a->dir, l-1);
+    }
+}
+
+//e)
+int max2 (int x, int y, int z) {
+    int max = x;
+    if (y > x) {
+        max = y;
+    }
+    if (max > z) return max;
+    return z;
+}
+
+int procuraE1(ABin a, int x) {
+    int r = 0;
+    if (a != NULL) {
+        if (a->valor == x) r = 1;
+        max2(r, procuraE1(a->esq, x), procuraE1(a->dir, x));
+    }
+    return 0;
+}
+
+//2.
+//f)
+struct nodo *procura1 (ABin a, int x) {
+    ABin r = NULL;
+    if (a != NULL) {
+        if (a->valor == x) r = a;
+        if (a->valor < x) r = procura1(a->dir, x);
+        r = procura1(a->esq, x);
+    }
+    return r;
+}
+
+//g)
+int nivel1 (ABin a, int x) {
+    int r;
+    for (r = 0; a != NULL && a->valor != x; r++) {
+        if (a->valor < x) {
+            a = a->dir;
+        }
+        else a = a->esq;
+    }
+    if (a != NULL) return r;
+    else return -1;
+}
+
+//h)
+void imprimeAte2 (ABin a, int x) {
+    if (a != NULL) {
+        imprimeAte2(a->esq, x);
+        if (a->valor < x) {
+            printf("%d", a->valor);
+            imprimeAte2(a->dir, x);
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
